@@ -21,5 +21,5 @@ const createTaskController = async (req: Request, res: Response) => {
 
 export {
   getAllController,
-  createTaskController
+  createTaskController,
 };

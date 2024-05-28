@@ -13,12 +13,11 @@ const createTask = async (task: Task): Promise<Task> => {
   const query = 'INSERT INTO tasks(title, status, created_at) VALUES (?, ?, ?)';
   const [result] = await connectionMysql.execute<ResultSetHeader>(query, [title, 'pendente', dateUTC]);
 
-  // Return details of the created task
   const createdTask: Task = {
     id: result.insertId,
     title,
     status: 'pendente',
-    created_at: dateUTC
+    created_at: dateUTC,
   };
 
   return createdTask;
@@ -26,5 +25,5 @@ const createTask = async (task: Task): Promise<Task> => {
 
 export {
   getAllModel,
-  createTask
+  createTask,
 };
