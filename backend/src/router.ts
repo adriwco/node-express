@@ -1,8 +1,9 @@
-import express, { Request, Response } from 'express';
-const router = express.Router()
+import express from 'express';
+import { getAllController, createTaskController } from './controllers/tasksController';
 
-router.get('/', (req: Request, res: Response) => {
-  res.status(200).send('Hello world!!! :)');
-});
+const router = express.Router();
 
-module.exports = router
+router.get('/tasks', getAllController);
+router.post('/tasks', createTaskController);
+
+export default router;

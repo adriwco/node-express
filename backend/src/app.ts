@@ -1,8 +1,11 @@
 import express from 'express';
+import router from './router';
+import dotenv from 'dotenv';
 
-const router = require('./router')
+dotenv.config();
+
 const app = express();
-
-app.use(router)
+app.use(express.json());
+app.use(router);
 
 export default app;
