@@ -23,7 +23,22 @@ const createTask = async (task: Task): Promise<Task> => {
   return createdTask;
 };
 
+const updateTask = async (id: number, task: Task): Promise<number> => {
+  const { title, status } = task;
+  const query = 'UPDATE tasks SET title = ?, status = ? WHERE id = ?';
+  const [result] = await connectionMysql.execute<ResultSetHeader>(query, [title, status, id]);
+  return result.affectedRows;
+};
+
+const deleteTask = async (id: number): Promise<number> => {
+  const query = 'DELETE FROM tasks WHERE id = ?';
+  const [result] = await connectionMysql.execute<ResultSetHeader>(query, [id]);
+  return result.affectedRows;
+};
+
 export {
   getAllModel,
   createTask,
+  updateTask,
+  deleteTask,
 };
